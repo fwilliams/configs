@@ -65,7 +65,7 @@
   :init (global-linum-mode t)
   :config (setq linum-format "%4d\u2502"))
 
-(use-package column-number
+(use-package simple
   :init (column-number-mode t))
 
 (use-package ido
