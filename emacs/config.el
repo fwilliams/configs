@@ -1,12 +1,7 @@
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (package-initialize)
 
-;; Stuff I set with Custom
 ;;
+;; Stuff I set with Custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -21,8 +16,13 @@
  ;; If there is more than one, they won't work right.
  )
 
+
+
+;; --------------------
+;; Global features setup
+;; --------------------
+
 ;; Use MELPA package repository
-;;
 (require 'package) ;; You might already have this line
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
@@ -35,10 +35,6 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-
-
-;; Global features setup
-
 ;; Resizing windows with C-S-<arrow-key>
 (global-set-key (kbd "C-S-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "C-S-<right>") 'enlarge-window-horizontally)
@@ -48,10 +44,29 @@
 ;; Don't show the emacs startup message and just drop me into the scratch buffer
 (setq inhibit-startup-message t)
 
+;; Backup all files to ~/.emacs.d and don't pollute the directory
+;; Keep the first few backups (lowest-numbered) ever and the latest few backups (highest numbered) ever, Delete all in between. 
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups"))
+      delete-old-versions t ;; Delete old backups
+      kept-new-versions 7   ;; Keep 7 newest versions when a new backup is made
+      kept-old-versions 2   ;; Number of oldest versions to keep when a new backup is made
+      version-control t     ;; Always make numeric backup versions
+      backup-by-copying t)  ;; Backup by making copies of files
 
+
+      
+;; ------------------
 ;; Configure packages
-;;
+;; ------------------
+
 (require 'use-package)
+
+(use-package linum
+  :init (global-linum-mode t)
+  :config (setq linum-format "%4d\u2502"))
+
+(use-package column-number
+  :init (column-number-mode t))
 
 (use-package ido
   :init (ido-mode t))
