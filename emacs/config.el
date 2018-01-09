@@ -5,13 +5,14 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+;; Stuff I set with Custom
+;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (tango-dark)))
- '(elpy-rpc-python-command "python3")
  '(package-selected-packages (quote (use-package shell-pop elpy markdown-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -20,6 +21,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; Use MELPA package repository
+;;
 (require 'package) ;; You might already have this line
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
@@ -32,9 +35,9 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-;; Elpy rocks
-(elpy-enable)
-(elpy-use-ipython "ipython3")
+
+
+;; Global features setup
 
 ;; Resizing windows with C-S-<arrow-key>
 (global-set-key (kbd "C-S-<left>") 'shrink-window-horizontally)
@@ -42,7 +45,25 @@
 (global-set-key (kbd "C-S-<down>") 'shrink-window)
 (global-set-key (kbd "C-S-<up>") 'enlarge-window)
 
+;; Don't show the emacs startup message and just drop me into the scratch buffer
+(setq inhibit-startup-message t)
+
+
+;; Configure packages
+;;
 (require 'use-package)
+
+(use-package ido
+  :init (ido-mode t))
+
+(use-package elpy
+  :commands elpy-enable
+  :init (elpy-enable)
+  :config
+  (progn
+    (setq elpy-rpc-python-command "python3")
+    (elpy-use-ipython "ipython3")))
+
 (use-package shell-pop
   :bind (("C-t" . shell-pop))
   :config
