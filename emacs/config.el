@@ -59,6 +59,22 @@
 ;; Configure packages
 ;; ------------------
 
+;; Install any missing packages
+(defvar my-packages '(use-package elpy shell-pop))
+(defun my-packages-installed-p ()
+  (cl-loop for p in my-packages
+	   when (not (package-installed-p p)) do (cl-return nil)
+	   finally (cl-return t)))
+(unless (my-packages-installed-p)
+  ;; check for new packages and package versions
+  (package-refresh-contents)
+  ;; install missing packages
+  (dolist (p my-packages)
+    (when (not (package-installed-p p))
+      (package-intall p))))
+
+
+;; Configure packages
 (require 'use-package)
 
 (use-package linum
