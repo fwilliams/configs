@@ -33,10 +33,10 @@ wireless wlp2s0 {
 
 ethernet eno1 {
   # if you use %speed, i3status requires root privileges
-    format_up = " Ethernet  [%ip | %speed] "
-      format_down = " Ethernet  [diconnected] "
-      }
-
+  format_up = " Ethernet  [%ip | %speed] "
+  format_down = " Ethernet  [diconnected] "
+}
+      
 battery 0 {
   format = " %status  [%percentage %remaining] "
   low_threshold = 10
