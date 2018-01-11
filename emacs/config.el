@@ -1,7 +1,10 @@
+(require 'package)
 (package-initialize)
 
-;;
+;; -----------------------
 ;; Stuff I set with Custom
+;; -----------------------
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -23,7 +26,6 @@
 ;; --------------------
 
 ;; Use MELPA package repository
-(require 'package) ;; You might already have this line
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
        (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
@@ -31,15 +33,8 @@
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize) ;; You might already have this line
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-
-;; Resizing windows with C-S-<arrow-key>
-(global-set-key (kbd "C-S-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "C-S-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "C-S-<down>") 'shrink-window)
-(global-set-key (kbd "C-S-<up>") 'enlarge-window)
 
 ;; Don't show the emacs startup message and just drop me into the scratch buffer
 (setq inhibit-startup-message t)
@@ -54,7 +49,22 @@
       backup-by-copying t)  ;; Backup by making copies of files
 
 
+
+;; -------------------
+;; Global key bindings
+;; -------------------
+
+;; Resizing windows with C-S-<arrow-key>
+(global-set-key (kbd "C-S-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-S-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-S-<down>") 'shrink-window)
+(global-set-key (kbd "C-S-<up>") 'enlarge-window)
+
+;; Comment out lines with C-x C-_ (this is C-x C-/ in real keyboard input)
+(global-set-key (kbd "C-x C-_") 'comment-line)
+
       
+
 ;; ------------------
 ;; Configure packages
 ;; ------------------
@@ -71,7 +81,7 @@
   ;; install missing packages
   (dolist (p my-packages)
     (when (not (package-installed-p p))
-      (package-intall p))))
+      (package-install 'p))))
 
 
 ;; Configure packages
