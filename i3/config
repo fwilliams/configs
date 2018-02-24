@@ -12,7 +12,8 @@ set $mod Mod4
 # and clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:DejaVu Sans 8
+#font pango:DejaVu Sans 10
+font pango:OpenSans 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -171,7 +172,7 @@ bindsym Print exec xfce4-screenshooter
 bindsym Shift+Print exec gtk-recordmydesktop
 
 # Restore desktop background
-exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id nitrogen --restore
 
 # Run preset display configurations stored in $HOME/.screenlayout/
 bindsym $mod+m exec eval `readlink -e ~/.screenlayout/`/`ls -1 ~/.screenlayout/ | rofi -dmenu -p "display: "` && nitrogen --restore
@@ -180,13 +181,28 @@ bindsym $mod+Shift+m exec nitrogen --restore
 # Goto window
 bindsym $mod+g exec rofi -show window
 
+# Start compton for fancy compositing effects
+exec --no-startup-id compton -CG
+
+# Start redshift
+exec --no-startup-id redshift-gtk
+
 # i3bar
 bar {
     status_command i3status
     verbose true
     position bottom
     colors {
-        background #0A0A0A
+        #background "#2d2d2d"
+        background #2D2D2D
+        statusline #F9F9F9
+        separator  #dedede
+
+        #focused_workspace  #1A505D #257284 #F9F9F9
+        #active_workspace   #222222 #333333 #F9F9F9
+        #inactive_workspace #222222 #333333 #CDCDCD
+        #urgent_workspace   #333333 #D64937 #F9F9F9
+        #binding_mode       #333333 #D64937 #F9F9F9
     }
 }
 

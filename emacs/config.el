@@ -81,7 +81,7 @@
   ;; install missing packages
   (dolist (p my-packages)
     (when (not (package-installed-p p))
-      (package-install 'p))))
+      (package-install p))))
 
 
 ;; Configure packages
@@ -102,8 +102,9 @@
   :init (elpy-enable)
   :config
   (progn
-    (setq elpy-rpc-python-command "python3")
-    (elpy-use-ipython "ipython3")))
+    (setq elpy-rpc-python-command "python3"
+	  python-shell-interpreter "ipython"
+	  python-shell-interpreter-args "-i --simple-prompt")))
 
 (use-package shell-pop
   :bind (("C-t" . shell-pop))
