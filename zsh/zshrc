@@ -93,4 +93,3 @@ export PATH="/home/francis/miniconda3/bin:$PATH"
 export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH
 
-eval "$(register-python-argcomplete conda)" || true  # If we have conda and argcomplete then this will autocomplete conda commands

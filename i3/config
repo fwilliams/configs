@@ -175,7 +175,7 @@ bindsym Shift+Print exec gtk-recordmydesktop
 exec_always --no-startup-id nitrogen --restore
 
 # Run preset display configurations stored in $HOME/.screenlayout/
-bindsym $mod+m exec eval `readlink -e ~/.screenlayout/`/`ls -1 ~/.screenlayout/ | rofi -dmenu -p "display: "` && nitrogen --restore
+bindsym $mod+m exec eval `readlink -e ~/.screenlayout/`/`ls -1 ~/.screenlayout/ | rofi -dmenu -p "display: "` && nitrogen --restore && i3-msg restart
 bindsym $mod+Shift+m exec nitrogen --restore
 
 # Goto window
