@@ -208,3 +208,5 @@ bar {
 
 # Manually float some windows:
 for_window [class="Gtk-recordmydesktop"] floating enable, border normal
+for_window [window_role="pop-up"] floating enable
+for_window [class="jetbrains-pycharm" title="win0"] floating enable, border normal
