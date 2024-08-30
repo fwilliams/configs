@@ -19,7 +19,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-
+(global-display-line-numbers-mode 1)
 
 ;; --------------------
 ;; Global features setup
@@ -86,10 +86,6 @@
 
 ;; Configure packages
 (require 'use-package)
-
-(use-package linum
-  :init (global-linum-mode t)
-  :config (setq linum-format "%4d\u2502"))
 
 (use-package simple
   :init (column-number-mode t))
