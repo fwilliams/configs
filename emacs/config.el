@@ -10,8 +10,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages (quote (use-package shell-pop elpy markdown-mode))))
+ '(custom-enabled-themes '(tango-dark))
+ '(package-selected-packages '(use-package shell-pop elpy markdown-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -19,7 +19,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(global-display-line-numbers-mode 1)
+
 
 ;; --------------------
 ;; Global features setup
@@ -40,7 +40,7 @@
 (setq inhibit-startup-message t)
 
 ;; Backup all files to ~/.emacs.d and don't pollute the directory
-;; Keep the first few backups (lowest-numbered) ever and the latest few backups (highest numbered) ever, Delete all in between. 
+;; Keep the first few backups (lowest-numbered) ever and the latest few backups (highest numbered) ever, Delete all in between.
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups"))
       delete-old-versions t ;; Delete old backups
       kept-new-versions 7   ;; Keep 7 newest versions when a new backup is made
@@ -48,7 +48,7 @@
       version-control t     ;; Always make numeric backup versions
       backup-by-copying t)  ;; Backup by making copies of files
 
-
+(global-display-line-numbers-mode 1)
 
 ;; -------------------
 ;; Global key bindings
@@ -63,11 +63,11 @@
 ;; Comment out lines with C-x C-_ (this is C-x C-/ in real keyboard input)
 (global-set-key (kbd "C-x C-_") 'comment-line)
 
-      
 
-;; ------------------
-;; Configure packages
-;; ------------------
+
+;; ------------------------------
+;; Install and configure packages
+;; ------------------------------
 
 ;; Install any missing packages
 (defvar my-packages '(use-package elpy shell-pop))
@@ -82,7 +82,6 @@
   (dolist (p my-packages)
     (when (not (package-installed-p p))
       (package-install p))))
-
 
 ;; Configure packages
 (require 'use-package)
